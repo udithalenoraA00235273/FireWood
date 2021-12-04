@@ -10,6 +10,7 @@ namespace FireWood.Models
     {
         [Key]
         public string ServiceId { get; set; }
+        public string ServiceLogo { get; set; }
         public string ServiceName { get; set; }
         public string ServiceDesc { get; set; }
 
