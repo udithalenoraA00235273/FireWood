@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+	
+	<iteItemGroup></ItemGroup>
+		
+	<PackaPackageReference />Include=""MicrosoftEntitiyFramework veVersion=""2.1.0
+		<PackageReference Include="MicrosoftEntitiyFramework" Version="2.1.0"/>.AspNetoCoreCrioreore.IdentituyEntityframeworkCoreFIdentity.
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FireWood.Application\FireWood.Application.csproj" />
+    <ProjectReference Include="..\FireWood.Domain\FireWood.Domain.csproj" />
+    <ProjectReference Include="..\FireWoodTest\FireWoodTest.csproj" />
+    <ProjectReference Include="..\FireWood\FireWood.csproj" />
+  </ItemGroup>
+
+</Project>

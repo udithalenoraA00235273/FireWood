@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31321.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FireWood", "FireWood\FireWood.csproj", "{8B77469E-1E1F-484B-AED5-7B0D3D725587}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FireWoodTest", "FireWoodTest\FireWoodTest.csproj", "{A36122C2-A8FE-45AF-B4A7-A3C716B7FB43}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FireWoodTest", "FireWoodTest\FireWoodTest.csproj", "{A36122C2-A8FE-45AF-B4A7-A3C716B7FB43}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
