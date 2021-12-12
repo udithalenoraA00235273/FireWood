@@ -38,5 +38,30 @@ namespace FireWood.Areas.Admin
             return View(productTypes);
         }
 
+        public ActionResult Edit(int? id)
+        {
+            if(id ==null)
+            {
+                return NotFound();
+            }
+            var productType = _db.ProductTypes.Find(id);
+            if(productType==null)
+            {
+                return NotFound();
+            }
+            return View(productType);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(ProductTypes productTypes)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Update(productTypes);
+                await _db.SaveChangesAsync();
+                return RedirectToAction(actionName: nameof(Index));
+            }
+            return View(productTypes);
+        }
     }
 }
