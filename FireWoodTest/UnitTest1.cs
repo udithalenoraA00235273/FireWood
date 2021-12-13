@@ -1,4 +1,7 @@
+using FireWood.Areas.Admin;
+using FireWood.Controllers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Web.Mvc;
 
 namespace FireWoodTest
 {
@@ -6,8 +9,11 @@ namespace FireWoodTest
     public class UnitTest1
     {
         [TestMethod]
-        public void TestMethod1()
+        public void Index()
         {
+           
         }
+
+ 
     }
 }

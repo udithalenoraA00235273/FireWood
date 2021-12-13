@@ -20,6 +20,11 @@ namespace FireWood.Controllers
         {
             _db = db;
         }
+
+        public HomeController()
+        {
+        }
+
         public IActionResult Index()
         {
             return View(_db.Products.Include(c=>c.ProductTypes).ToList());
