@@ -126,7 +126,5 @@ namespace FireWood.Areas.Admin
             }
             return View(productTypes);
         }
-
-
     }
 }
