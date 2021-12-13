@@ -15,5 +15,7 @@ namespace FireWood.Data
         }
 
         public DbSet<ProductTypes> ProductTypes { get; set; }
+        public DbSet<Products> Products { get; set; }
+
     }
 }
