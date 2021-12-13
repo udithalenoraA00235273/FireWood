@@ -26,13 +26,6 @@ namespace FireWood.Areas.Admin.Controllers
             return View(_db.Products.Include(c=>c.ProductTypes).ToList());
         }
 
-        public IActionResult Index(decimal lowAmount, decimal largeAmount)
-        {
-            var products = _db.Products.Include(c => c.ProductTypes)
-            .Where(c=>c.Price >= lowAmount && c.Price <=largeAmount).ToList();
-            return View();
-        }
-
         public IActionResult Create()
         {
             ViewData["productTypeId"] = new SelectList(_db.ProductTypes.ToList(), "Id", "ProductType");
@@ -43,13 +36,6 @@ namespace FireWood.Areas.Admin.Controllers
         {
             if(ModelState.IsValid)
             {
-                var searchProduct = _db.Products.FirstOrDefault(c => c.Name == products.Name);
-                if(searchProduct!=null)
-                {
-                    ViewBag.message = "This product is already exist";
-                    ViewData["productTypeId"] = new SelectList(_db.ProductTypes.ToList(), "Id", "ProductType");
-                    return View(products);
-                }
                 if(image!=null)
                 {
                     var name = Path.Combine(_he.WebRootPath + "/Images", Path.GetFileName(image.FileName));
