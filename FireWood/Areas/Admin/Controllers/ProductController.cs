@@ -26,6 +26,13 @@ namespace FireWood.Areas.Admin.Controllers
             return View(_db.Products.Include(c=>c.ProductTypes).ToList());
         }
 
+        public IActionResult Index(decimal lowAmount, decimal largeAmount)
+        {
+            var products = _db.Products.Include(c => c.ProductTypes)
+            .Where(c=>c.Price >= lowAmount && c.Price <=largeAmount).ToList();
+            return View();
+        }
+
         public IActionResult Create()
         {
             ViewData["productTypeId"] = new SelectList(_db.ProductTypes.ToList(), "Id", "ProductType");
@@ -36,6 +43,13 @@ namespace FireWood.Areas.Admin.Controllers
         {
             if(ModelState.IsValid)
             {
+                var searchProduct = _db.Products.FirstOrDefault(c => c.Name == products.Name);
+                if(searchProduct!=null)
+                {
+                    ViewBag.message = "This product is already exist";
+                    ViewData["productTypeId"] = new SelectList(_db.ProductTypes.ToList(), "Id", "ProductType");
+                    return View(products);
+                }
                 if(image!=null)
                 {
                     var name = Path.Combine(_he.WebRootPath + "/Images", Path.GetFileName(image.FileName));
@@ -79,6 +93,53 @@ namespace FireWood.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(products);
+        }
+
+        public ActionResult Details(int? id)
+        {
+            if(id==null)
+            {
+                return NotFound();
+            }
+            var product = _db.Products.Include(c => c.ProductTypes).FirstOrDefault(c => c.Id == id);
+            if(product==null)
+            {
+                return NotFound();
+            }
+            return View(product);
+        }
+
+        public ActionResult Delete(int? id)
+        {
+            if(id==null)
+            {
+                return NotFound();
+            }
+            var product = _db.Products.Include(c => c.ProductTypes).Where(c => c.Id == id).FirstOrDefault();
+            if(product==null)
+            {
+                return NotFound();
+            }
+            return View(product);
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirm(int? id)
+        {
+            if(id==null)
+            {
+                return NotFound();
+            }
+            var product = _db.Products.FirstOrDefault(c => c.Id == id);
+            if(product==null)
+            {
+                return NotFound();
+            }
+
+            _db.Products.Remove(product);
+            await _db.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
     }
 }
