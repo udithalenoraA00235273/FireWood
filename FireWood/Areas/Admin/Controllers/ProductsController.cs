@@ -12,11 +12,12 @@ using System.Threading.Tasks;
 namespace FireWood.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class ProductController : Controller
+    public class ProductsController : Controller
     {
         private ApplicationDbContext _db;
+        
         private IHostingEnvironment _he;
-        public ProductController(ApplicationDbContext db, IHostingEnvironment he)
+        public ProductsController(ApplicationDbContext db, IHostingEnvironment he)
         {
             _db = db;
             _he = he;
