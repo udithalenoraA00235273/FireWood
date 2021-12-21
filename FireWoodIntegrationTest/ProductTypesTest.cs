@@ -7,22 +7,32 @@ using WebDriverManager.DriverConfigs.Impl;
 namespace FireWoodIntegrationTest
 {
     [TestClass]
-    public class ProductTypesTest
+    public class ProductTypesTest : TestBase
     {
-
-        public IWebDriver _webDriver;
-        [TestInitialize]
-        public void StartUp()
-        {
-            new DriverManager().SetUpDriver(new ChromeConfig());
-            _webDriver = new ChromeDriver();
-        }
         [TestMethod]
-        public void ToTestCreateProductType()
+        public void ToTestWeatherUserGoingToSaveNullProductTypes()
         {
             _webDriver.Navigate().GoToUrl("https://localhost:44330/Admin/ProductTypes/Create");
-            _webDriver.FindElement(By.ClassName("col-5"));            
+            _webDriver.FindElement(By.Id("ProductType")).SendKeys("");
+            _webDriver.FindElement(By.CssSelector(".btn-primary")).Click();
+
+            var output = _webDriver.FindElement(By.XPath("//span[@class='text-danger field-validation-error']"));
+
+            Assert.AreEqual("The Product Type field is required.", output.Text);
         }
+        [TestMethod]
+        public void ToTestWeatherTheNewProductTypeSaved()
+        {
+            _webDriver.Navigate().GoToUrl("https://localhost:44330/Admin/ProductTypes/Create");
+            _webDriver.FindElement(By.Id("ProductType")).SendKeys("Small Products");
+            _webDriver.FindElement(By.CssSelector(".btn-primary")).Click();
+
+            var output = _webDriver.FindElement(By.XPath("//span[@class='text-danger field-validation-error']"));
+
+            Assert.AreEqual("The Product Type field is required.", output.);
+        }
+
+
         [TestMethod]
         public void ToTestEditProductType()
         {
@@ -43,13 +53,6 @@ namespace FireWoodIntegrationTest
             _webDriver.Navigate().GoToUrl("https://localhost:44330/Admin/ProductTypes/Delete");
        
 
-        }
-
-
-        [TestCleanup]
-        public void ShutDown()
-        {
-            _webDriver.Quit();
         }
     }
 }

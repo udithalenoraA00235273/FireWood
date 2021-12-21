@@ -7,21 +7,13 @@ using WebDriverManager.DriverConfigs.Impl;
 namespace FireWoodIntegrationTest
 {
     [TestClass]
-    public class ProductsTest
+    public class ProductsTest : TestBase
     {
-
-        public IWebDriver _webDriver;
-        [TestInitialize]
-        public void StartUp()
-        {
-            new DriverManager().SetUpDriver(new ChromeConfig());
-            _webDriver = new ChromeDriver();
-        }
         [TestMethod]
         public void ToTestCreateProducts()
         {
             _webDriver.Navigate().GoToUrl("https://localhost:44330/Admin/Products/Create");
-            _webDriver.FindElement(By.ClassName("col-5"));
+            
         }
         [TestMethod]
         public void ToTestEditProducts()
@@ -43,13 +35,6 @@ namespace FireWoodIntegrationTest
             _webDriver.Navigate().GoToUrl("https://localhost:44330/Admin/Products/Delete");
 
 
-        }
-
-
-        [TestCleanup]
-        public void ShutDown()
-        {
-            _webDriver.Quit();
         }
     }
 }

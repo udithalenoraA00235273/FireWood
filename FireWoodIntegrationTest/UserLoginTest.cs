@@ -7,28 +7,20 @@ using WebDriverManager.DriverConfigs.Impl;
 namespace FireWoodIntegrationTest
 {
     [TestClass]
-    public class UserLoginTest
+    public class UserLoginTest : TestBase
     {
 
-        public IWebDriver _webDriver;
-        [TestInitialize]
-        public void StartUp()
-        {
-            new DriverManager().SetUpDriver(new ChromeConfig());
-            _webDriver = new ChromeDriver();
-        }
         [TestMethod]
-        public void ToTestRegisterUser()
+        public void ToValidateTheEmailAddressIsTrue()
         {
             _webDriver.Navigate().GoToUrl("https://localhost:44330/Identity/Account/Login");
+            _webDriver.FindElement(By.Id("Input_Email")).SendKeys("Testing");
+            _webDriver.FindElement(By.CssSelector(".btn-primary")).Click();
 
-        }
+            var output = _webDriver.FindElement(By.Id("Input_Email-error"));
 
+            Assert.AreEqual("The Email field is not a valid e-mail address.", output.Text);
 
-        [TestCleanup]
-        public void ShutDown()
-        {
-            _webDriver.Quit();
-        }
+        } 
     }
 }

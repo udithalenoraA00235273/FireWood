@@ -7,28 +7,35 @@ using WebDriverManager.DriverConfigs.Impl;
 namespace FireWoodIntegrationTest
 {
     [TestClass]
-    public class UserRegisterTest
+    public class UserRegisterTest : TestBase
     {
-
-        public IWebDriver _webDriver;
-        [TestInitialize]
-        public void StartUp()
-        {
-            new DriverManager().SetUpDriver(new ChromeConfig());
-            _webDriver = new ChromeDriver();
-        }
         [TestMethod]
-        public void ToTestRegisterUser()
+        public void ToTestPassowrdContainsMinimumCharacters()
         {
             _webDriver.Navigate().GoToUrl("https://localhost:44330/Identity/Account/Register");
-    
-        }
-        
+            _webDriver.FindElement(By.Id("Input_Email")).SendKeys("uditha_a@live.com");
+            _webDriver.FindElement(By.Id("Input_Password")).SendKeys("AAAA");
+            _webDriver.FindElement(By.CssSelector(".btn-primary")).Click();
 
-        [TestCleanup]
-        public void ShutDown()
+            var output = _webDriver.FindElement(By.Id("Input_Password-error"));
+
+            Assert.AreEqual("The Password must be at least 6 and at max 100 characters long.", output.Text);
+
+        }
+
+        [TestMethod]
+        public void ToTestConfirmPasswordMatchesTheInitialPassword()
         {
-            _webDriver.Quit();
+            _webDriver.Navigate().GoToUrl("https://localhost:44330/Identity/Account/Register");
+            _webDriver.FindElement(By.Id("Input_Email")).SendKeys("uditha_a@live.com");
+            _webDriver.FindElement(By.Id("Input_Password")).SendKeys("AaBNMKASJDSAD");
+            _webDriver.FindElement(By.Id("Input_Password")).SendKeys("AASdsdasca");
+            _webDriver.FindElement(By.CssSelector(".btn-primary")).Click();
+
+
+            var output = _webDriver.FindElement(By.Id("Input_ConfirmPassword-error"));
+
+            Assert.AreEqual("The password and confirmation password do not match.", output.Text);
         }
     }
 }
