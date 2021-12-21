@@ -16,6 +16,7 @@ namespace FireWood.Areas.Admin
         {
             _db = db;
         }
+
         public IActionResult Index()
         {
             // var data = _db.ProductTypes.ToList();

@@ -14,14 +14,17 @@ namespace FireWood.Areas.Admin.Controllers
     [Area("Admin")]
     public class ProductsController : Controller
     {
+       
+        
         private ApplicationDbContext _db;
         
-        private IHostingEnvironment _he;
-        public ProductsController(ApplicationDbContext db, IHostingEnvironment he)
+        private IWebHostEnvironment _he;
+        public ProductsController(ApplicationDbContext db, IWebHostEnvironment he)
         {
             _db = db;
             _he = he;
         }
+
         public IActionResult Index()
         {
             return View(_db.Products.Include(c=>c.ProductTypes).ToList());

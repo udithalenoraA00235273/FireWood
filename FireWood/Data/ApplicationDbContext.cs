@@ -14,6 +14,11 @@ namespace FireWood.Data
         {
         }
 
+        public void ListAsync()
+        {
+            throw new NotImplementedException();
+        }
+
         public DbSet<ProductTypes> ProductTypes { get; set; }
         public DbSet<Products> Products { get; set; }
         public DbSet<UserApplication> UserApplications { get; set; }
