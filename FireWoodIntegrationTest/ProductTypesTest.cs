@@ -7,7 +7,7 @@ using WebDriverManager.DriverConfigs.Impl;
 namespace FireWoodIntegrationTest
 {
     [TestClass]
-    public class UnitTest1
+    public class ProductTypesTest
     {
 
         public IWebDriver _webDriver;
@@ -27,21 +27,21 @@ namespace FireWoodIntegrationTest
         public void ToTestEditProductType()
         {
             _webDriver.Navigate().GoToUrl("https://localhost:44330/Admin/ProductTypes/Edit");
-            _webDriver.FindElement(By.ClassName("col-5"));
+           
 
         }
         [TestMethod]
         public void ToTestDetailsProductType()
         {
             _webDriver.Navigate().GoToUrl("https://localhost:44330/Admin/ProductTypes/Details");
-            _webDriver.FindElement(By.ClassName("col-5"));
+           
 
         }
         [TestMethod]
         public void ToTestDeleteProductType()
         {
             _webDriver.Navigate().GoToUrl("https://localhost:44330/Admin/ProductTypes/Delete");
-            _webDriver.FindElement(By.ClassName("col-5"));
+       
 
         }
 
