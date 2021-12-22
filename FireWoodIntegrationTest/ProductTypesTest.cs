@@ -31,32 +31,37 @@ namespace FireWoodIntegrationTest
             Assert.AreEqual(URL, "https://localhost:44330/Admin/ProductTypes");
         }
 
-
         [TestMethod]
-        public void ToTestWeatherTheProductItemGotEdited()
+        public void ToTestWeatherTheProductTypesCanEdit()
         {
-            _webDriver.Navigate().GoToUrl("https://localhost:44330/Admin/ProductTypes/Edit");
-            _webDriver.FindElement(By.Id("ProductType")).SendKeys("Medium Test");
+            _webDriver.Navigate().GoToUrl("https://localhost:44330/Admin/ProductTypes/Edit/7");
+            _webDriver.FindElement(By.Id("ProductType")).SendKeys("Update Product");
             _webDriver.FindElement(By.CssSelector(".btn-primary")).Click();
             var URL = _webDriver.Url;
 
             Assert.AreEqual(URL, "https://localhost:44330/Admin/ProductTypes");
+        }
+        [TestMethod]
+        public void ToTestDetailsProductTypeCanBeAccess()
+        {
+            _webDriver.Navigate().GoToUrl("https://localhost:44330/Admin/ProductTypes");
+            _webDriver.FindElement(By.ClassName("btn-group"));
+            _webDriver.FindElement(By.CssSelector(".btn-success")).Click();
+
+            var URL = _webDriver.Url;
+
+            Assert.AreEqual(URL, "https://localhost:44330/Admin/ProductTypes/Details/7");
 
 
         }
         [TestMethod]
-        public void ToTestDetailsProductType()
+        public void ToTestWeatherProductTypeDeleteOptionWorks()
         {
-            _webDriver.Navigate().GoToUrl("https://localhost:44330/Admin/ProductTypes/Details");
-           
+            _webDriver.Navigate().GoToUrl("https://localhost:44330/Admin/ProductTypes/Delete/11");
+            _webDriver.FindElement(By.CssSelector(".btn-danger")).Click();
+            var URL = _webDriver.Url;
 
-        }
-        [TestMethod]
-        public void ToTestDeleteProductType()
-        {
-            _webDriver.Navigate().GoToUrl("https://localhost:44330/Admin/ProductTypes/Delete");
-       
-
+            Assert.AreEqual(URL, "https://localhost:44330/Admin/ProductTypes");
         }
     }
 }
